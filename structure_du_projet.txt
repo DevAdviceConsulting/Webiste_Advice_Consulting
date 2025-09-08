@@ -1,0 +1,50 @@
+src/
+├── app/
+│   ├── components/
+│   │   ├── header/
+│   │   │   ├── header.component.ts
+│   │   │   ├── header.component.html
+│   │   │   ├── header.component.scss
+│   │   │   └── header.component.spec.ts
+│   │   ├── footer/
+│   │   │   ├── footer.component.ts
+│   │   │   ├── footer.component.html
+│   │   │   ├── footer.component.scss
+│   │   │   └── footer.component.spec.ts
+│   │   ├── hero/
+│   │   │   └── ... 
+│   │   └── ... (autres composants)
+│   ├── pages/
+│   │   ├── home/
+│   │   │   └── ...
+│   │   ├── about/
+│   │   │   └── ...
+│   │   └── ... (autres pages)
+│   ├── services/
+│   │   ├── theme.service.ts
+│   │   ├── navigation.service.ts
+│   │   └── ... (autres services)
+│   ├── models/
+│   │   ├── navigation-item.model.ts
+│   │   └── ... (autres modèles)
+│   ├── shared/
+│   │   ├── pipes/
+│   │   ├── directives/
+│   │   └── components/
+│   ├── utils/
+│   │   └── theme.utils.ts
+│   ├── app-routing.module.ts
+│   ├── app.component.ts
+│   ├── app.component.html
+│   ├── app.component.scss
+│   └── app.module.ts
+├── assets/
+│   ├── images/
+│   ├── vendor/
+│   └── styles/
+│       ├── _variables.scss
+│       ├── _mixins.scss
+│       ├── _theme-dark.scss
+│       ├── _theme-light.scss
+│       └── styles.scss
+└── environments/

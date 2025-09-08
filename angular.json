@@ -16,13 +16,22 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets"
             ],
+
             "styles": [
-              "src/styles.css"
+              "src/assets/vendor/font-awesome/css/all.min.css",
+              "src/assets/vendor/bootstrap-icons/bootstrap-icons.css",
+              "src/assets/vendor/swiper/swiper-bundle.min.css",
+              "src/assets/css/style.css"
+            ],
+            "scripts": [
+              "src/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "src/assets/vendor/purecounterjs/dist/purecounter_vanilla.js",
+              "src/assets/vendor/swiper/swiper-bundle.min.js",
+              "src/assets/vendor/jarallax/jarallax.min.js",
+              "src/assets/vendor/jarallax/jarallax-video.min.js"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",

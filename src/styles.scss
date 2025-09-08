@@ -1,0 +1,149 @@
+// Import Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// Import Swiper styles
+@import 'swiper/swiper-bundle.css';
+
+// Import des polices
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+// Styles globaux
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+// Variables personnalisées
+:root {
+  --bs-primary: #0d6efd;
+  --bs-dark: #212529;
+  --bs-light: #f8f9fa;
+}
+
+// Classes utilitaires personnalisées
+.bg-linear-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%);
+}
+
+.header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  transition: all 0.3s ease;
+}
+
+.header-absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+}
+
+// Styles pour les cartes avec effet de scale
+.card-img-scale {
+  overflow: hidden;
+  
+  .card-img-scale-wrapper {
+    overflow: hidden;
+  }
+  
+  .img-scale {
+    transition: transform 0.5s ease;
+  }
+  
+  &:hover .img-scale {
+    transform: scale(1.05);
+  }
+}
+
+// Styles pour le mode sombre
+[data-bs-theme="dark"] {
+  .bg-light {
+    background-color: var(--bs-dark) !important;
+  }
+  
+  .text-body {
+    color: var(--bs-light) !important;
+  }
+}
+
+// Styles pour les avatars
+.avatar {
+  display: inline-flex;
+  
+  &-img {
+    width: 100%;
+    height: auto;
+  }
+  
+  &-sm {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  &-xs {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  &-xl {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+// Styles pour les icônes
+.icon-lg {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-xxl {
+  width: 9rem;
+  height: 9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Styles pour le bouton back to top
+.back-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--bs-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+  
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Media queries responsive
+@include media-breakpoint-down(lg) {
+  .display-4 {
+    font-size: calc(1.475rem + 2.7vw);
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .step-process .col-sm-6 {
+    margin-bottom: 1.5rem;
+  }
+}
