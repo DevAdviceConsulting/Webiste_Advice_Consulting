@@ -1,76 +1,78 @@
 <header class="header-sticky header-absolute" data-bs-theme="dark">
-	<!-- Logo Nav START -->
-	<nav class="navbar navbar-expand-xl px-lg-5">
-		<div class="container-fluid">
-			<!-- Logo START -->
-			<a class="navbar-brand me-5" href="#">
-				<img class="light-mode-item navbar-brand-item" [src]="'assets/images/logo.svg'" alt="logo">
-				<img class="dark-mode-item navbar-brand-item" [src]="'assets/images/logo.svg'" alt="logo">
+  <!-- Logo Nav START -->
+  <nav class="navbar navbar-expand-xl px-lg-5">
+    <div class="container-fluid">
+      <!-- Logo START -->
+      <a class="navbar-brand me-5" [routerLink]="'/'">
+        <img class="light-mode-item navbar-brand-item" [src]="'assets/images/logo.svg'" alt="logo">
+        <img class="dark-mode-item navbar-brand-item" [src]="'assets/images/logo.svg'" alt="logo">
+      </a>
+      <!-- Logo END -->
 
-			</a>
-			<!-- Logo END -->
+      <!-- Main navbar START -->
+      <div class="navbar-collapse collapse" id="navbarCollapse">
+        <ul class="navbar-nav navbar-nav-scroll dropdown-hover mx-auto">
+          <li class="nav-item"> 
+            <a class="nav-link" [routerLink]="'/'">Accueil</a> 
+          </li>
+          <li class="nav-item"> 
+            <a class="nav-link" [routerLink]="'/about'">A Propos</a> 
+          </li>
 
-			<!-- Main navbar START -->
-			<div class="navbar-collapse collapse" id="navbarCollapse">
-				<ul class="navbar-nav navbar-nav-scroll dropdown-hover mx-auto">
+          <!-- Nav item with dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu">
+              <!-- Dropdown submenu -->
+              <li class="dropdown dropend">
+                <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Solution IT</a>
+                <ul class="dropdown-menu" data-bs-popper="none">
+                  <li> <a class="dropdown-item" [routerLink]="'/services/m-files-ged'">M-Files GED</a> </li>
+                </ul>
+              </li>
 
-					<li class="nav-item"> <a class="nav-link" href="#">Accueil</a> </li>
-					<li class="nav-item"> <a class="nav-link" href="#">A Propos</a> </li>
+              <li> <hr class="dropdown-divider"></li>
 
-					<!-- Nav item -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">Services</a>
-						<ul class="dropdown-menu">
+              <li class="dropdown dropend">
+                <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Monétique</a>
+                <ul class="dropdown-menu" data-bs-popper="none">
+                  <li> <a class="dropdown-item" [routerLink]="'/services/guichet'">Guichet</a> </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
 
-							<!-- Dropdown submenu -->
-							<li class="dropdown dropend">
-								<a class="nav-link dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Solution IT</a>
-								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="#">M-Files GED</a></li>
-								</ul>
-							</li>
+          <li class="nav-item"> 
+            <a class="nav-link" [routerLink]="'/shop'">La Boutique</a> 
+          </li>
+          <li class="nav-item"> 
+            <a class="nav-link" [routerLink]="'/contact'">Contactez-Nous</a> 
+          </li>
+        </ul>
+      </div>
+      <!-- Main navbar END -->
 
-							<!-- Dropdown divider -->
-							<li> <hr class="dropdown-divider"></li>
+      <!-- Buttons -->
+      <ul class="nav align-items-center dropdown-hover ms-sm-2">
+        <!-- Offcanvas cart menu -->
+        <li class="nav-item position-relative ms-2 ms-sm-3 d-none d-sm-block">
+          <a class="btn btn-dark mb-0" [routerLink]="'/quote'">Demander Un Devis</a>
+        </li>
 
-							<!-- Dropdown submenu -->
-							<li class="dropdown dropend">
-								<a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Monétique</a>
-								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="#">Guichet</a></li>
-									
-								</ul>
-							</li>
-							
-						</ul>
-					</li>
-
-					<li class="nav-item"> <a class="nav-link" href="/shop" routerLink="/shop">La Boutique</a> </li>
-					<li class="nav-item"> <a class="nav-link" href="#">Contactez-Nous</a> </li>
-				</ul>
-			</div>
-			<!-- Main navbar END -->
-
-			<!-- Buttons -->
-			<ul class="nav align-items-center dropdown-hover ms-sm-2">
-				<!-- Offcanvas cart menu -->
-				<li class="nav-item position-relative ms-2 ms-sm-3 d-none d-sm-block">
-					<a class="btn btn-dark mb-0">Demander Un Devis</a>
-				</li>
-
-				<!-- Responsive navbar toggler -->
-				<li class="nav-item">
-					<button class="navbar-toggler ms-3 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-animation">
-							<span></span>
-							<span></span>
-							<span></span>
-						</span>
-					</button>
-				</li>	
-			</ul>
-
-		</div>
-	</nav>
-	<!-- Logo Nav END -->
+        <!-- Responsive navbar toggler -->
+        <li class="nav-item">
+          <button class="navbar-toggler ms-3 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-animation">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Logo Nav END -->
 </header>
