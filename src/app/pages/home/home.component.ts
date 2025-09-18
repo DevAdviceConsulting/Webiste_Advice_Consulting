@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
         once: true
       });
 
-      // PureCounter (import dynamique)
+      // PureCounter
       import('@srexi/purecounterjs').then(({ default: PureCounter }) => {
         new PureCounter();
       });

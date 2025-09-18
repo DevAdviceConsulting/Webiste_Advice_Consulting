@@ -1,0 +1,238 @@
+<!-- =======================
+Main Title START -->
+<section class="pb-5 pb-sm-7">
+  <div class="container">
+    <!-- Title and breadcrumb -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-dots pb-0 mb-0">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item"><a routerLink="/shop">Shop</a></li>
+        <li class="breadcrumb-item active" aria-current="page">All product</li>
+      </ol>
+    </nav>
+    <!-- Title -->
+    <h1 class="h3 mb-0 mt-3">Search items</h1>
+  </div>
+</section>
+<!-- =======================
+Main Title END -->
+
+<!-- =======================
+Product content START -->
+<section class="pt-0">
+  <div class="container">
+    <div class="row">
+
+      <!-- Filter sidebar START -->
+      <aside class="col-xl-3">
+        <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+          <div class="offcanvas-header bg-light">
+            <h6 class="offcanvas-title" id="offcanvasSidebarLabel">Advance Filter</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body flex-column p-3 p-xl-0">
+            <div class="accordion accordion-alt" id="accordionExample">
+              
+              <!-- Availability -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button fs-6 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Availability
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <form class="accordion-body">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="availability" id="allAvailability" 
+                             [checked]="filters.availability === 'all'" (change)="filters.availability = 'all'; applyFilters()">
+                      <label class="form-check-label" for="allAvailability">All</label>
+                    </div>
+                    <div class="form-check mt-2">
+                      <input class="form-check-input" type="radio" name="availability" id="newAvailability" 
+                             [checked]="filters.availability === 'new'" (change)="filters.availability = 'new'; applyFilters()">
+                      <label class="form-check-label" for="newAvailability">New Arrival</label>
+                    </div>
+                    <div class="form-check mt-2">
+                      <input class="form-check-input" type="radio" name="availability" id="stockAvailability" 
+                             [checked]="filters.availability === 'stock'" (change)="filters.availability = 'stock'; applyFilters()">
+                      <label class="form-check-label" for="stockAvailability">On Stock Only</label>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- Categories -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button fs-6 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    Categories
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                  <form class="accordion-body">
+                    <div class="form-check" *ngFor="let category of categories">
+                      <input class="form-check-input" type="checkbox" [id]="'category' + category" 
+                             [checked]="filters.categories.includes(category)" (change)="toggleCategory(category)">
+                      <label class="form-check-label heading-color" [for]="'category' + category">{{category}}</label>
+                      <span class="small float-end">({{ getCategoryCount(category) }})</span>
+
+                      <!-- <span class="small float-end">({{ products.filter(p => p.category === category).length }})</span> -->
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- Price -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button fs-6 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Price
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <form class="accordion-body">
+                    <div class="form-check" *ngFor="let range of priceRanges">
+                      <input class="form-check-input" type="radio" name="priceRange" [id]="'price' + range" 
+                             [checked]="filters.priceRange === range" (change)="setPriceRange(range)">
+                      <label class="form-check-label heading-color" [for]="'price' + range">
+                        {{ range === '500+' ? '$500 to more' : '$' + range.replace('-', ' to $') }}
+                      </label>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- Rating star -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button fs-6 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Rating star
+                  </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <form class="accordion-body">
+                    <ul class="list-inline mb-0 g-3">
+                      <li class="list-inline-item mb-0" *ngFor="let rating of ratings">
+                        <input type="checkbox" class="btn-check" [id]="'btn-check-' + rating" 
+                               [checked]="filters.ratings.includes(rating)" (change)="toggleRating(rating)">
+                        <label class="btn btn-sm btn-light btn-primary-soft-check" [for]="'btn-check-' + rating">
+                          {{rating}}<i class="bi bi-star-fill"></i>
+                        </label>
+                      </li>
+                    </ul>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between p-2 p-xl-0 mt-xl-3">
+              <button class="btn btn-link text-primary-hover p-0 mb-0" (click)="clearFilters()">Clear all</button>
+              <button class="btn btn-primary mb-0" data-bs-dismiss="offcanvas">Filter Result</button>
+            </div>
+          </div>
+        </div>		
+      </aside>
+      <!-- Filter sidebar END -->
+
+      <!-- Product grid START -->
+      <div class="col-xl-9 ps-xl-6">
+        <!-- Search and select -->
+        <form class="row g-2 g-xl-4 mb-4" (ngSubmit)="$event.preventDefault()">
+          <div class="col-md-6">
+            <div class="rounded position-relative">
+              <input class="form-control bg-light pe-5" type="search" placeholder="Search products..." 
+                     [(ngModel)]="searchTerm" (input)="onSearch($event)" name="search">
+              <button class="btn bg-transparent border-0 px-2 py-0 position-absolute top-50 end-0 translate-middle-y" type="submit">
+                <i class="bi bi-search"> </i>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-3 ms-auto">
+            <select class="form-select" [(ngModel)]="sortOption" (change)="onSortChange($event)" name="sort">
+              <option value="default">Sort by</option>
+              <option value="name">Name</option>
+              <option value="price-low">Low to High Price</option>
+              <option value="price-high">High to Low Price</option>
+            </select>
+          </div>
+
+          <div class="col-sm-6 col-md-3 d-grid d-xl-none">
+            <button class="btn btn-dark mb-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
+              <i class="fas fa-sliders-h me-1"></i> Show filter
+            </button>
+          </div>
+        </form>
+
+        <!-- Products Grid -->
+        <div class="row g-4 g-lg-5">
+          <div class="col-sm-6 col-lg-4" *ngFor="let product of paginatedProducts">
+            <div class="card border bg-transparent overflow-hidden p-0 h-100">
+              <!-- Overlay -->
+              <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
+                <div class="badge text-bg-dark" *ngIf="product.badge">{{product.badge}}</div>
+                <button class="btn btn-white btn-round border mb-0 ms-auto" (click)="toggleFavorite(product)">
+                  <i class="bi" [class.bi-heart]="!product.isFavorite" [class.bi-heart-fill]="product.isFavorite" 
+                     [class.text-danger]="product.isFavorite"></i>
+                </button>
+              </div>
+
+              <div class="card-header bg-light rounded m-2">
+                <img [src]="product.image" [alt]="product.name" class="img-fluid">
+              </div>
+
+              <div class="card-body pb-0">
+                <h6 class="card-title">
+                  <a [routerLink]="['/product', product.id]" class="stretched-link">{{product.name}}</a>
+                </h6>
+                <ul class="list-inline">
+                <!-- <li class="list-inline-item me-0 small" *ngFor="let star of [1,2,3,4,5]">
+                    <i class="fas" 
+                    [class.fa-star]="star <= product.rating" 
+                    [class.fa-star-half-alt]="star > product.rating && star - 0.5 <= product.rating"
+                    [class.fa-star-o]="star > product.rating && star - 0.5 > product.rating"
+                    [class.text-warning]="star <= product.rating || (star > product.rating && star - 0.5 <= product.rating)">
+                    </i>
+                </li> -->
+                </ul>
+              </div>
+
+              <div class="card-footer bg-transparent d-flex justify-content-between align-items-center pt-0">
+                <div *ngIf="product.originalPrice; else normalPrice">
+                  <p class="fw-bold text-success mb-0">${{product.price}}</p>
+                  <small class="text-decoration-line-through">${{product.originalPrice}}</small>
+                </div>
+                <ng-template #normalPrice>
+                  <p class="fw-bold text-success mb-0">${{product.price}}</p>
+                </ng-template>
+                <button class="btn btn-dark mb-0 z-index-2" (click)="addToCart(product)">
+                  <i class="bi bi-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <ul class="pagination pagination-primary-soft d-flex justify-content-end mb-0 mt-5" *ngIf="totalPages > 1">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" href="javascript:void(0)" (click)="changePage(currentPage - 1)">Prev</a>
+          </li>
+          <li class="page-item" *ngFor="let page of getPages()" [class.active]="page === currentPage">
+            <a class="page-link" href="javascript:void(0)" (click)="changePage(page)">{{page}}</a>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <a class="page-link" href="javascript:void(0)" (click)="changePage(currentPage + 1)">Next</a>
+          </li>
+        </ul>
+
+        <div class="alert alert-info mt-4" *ngIf="filteredProducts.length === 0">
+          <i class="bi bi-info-circle me-2"></i> No products found matching your criteria.
+        </div>
+      </div>
+      <!-- Product grid END -->		
+    </div>
+  </div>
+</section>
+<!-- =======================
+Product content END -->

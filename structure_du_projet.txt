@@ -19,7 +19,7 @@ src/
 │   │   │   └── ...
 │   │   ├── about/
 │   │   │   └── ...
-│   │   └── ... (autres pages)
+│   │   └── Boutique
 │   ├── services/
 │   │   ├── theme.service.ts
 │   │   ├── navigation.service.ts
